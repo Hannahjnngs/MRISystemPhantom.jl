@@ -179,7 +179,7 @@ end
 
 Append a gradient-only spoiler block on `cfg.axis` when `cfg.enabled`,
 otherwise return `seq` unchanged. Mutates `seq` and returns it for
-chaining inside `@addblocks` loops.
+chaining inside `@addblock` loops.
 """
 function apply_spoiler(seq, cfg::SpoilerConfig)
     cfg.enabled || return seq
@@ -255,7 +255,7 @@ function ir_se_2d_sequence(TI::Real, TE::Real, TR::Real;
     tr_d      = max(TR - shot_time, 0.0)
 
     seq = Sequence()
-    @addblocks for k in 1:Npe
+    @addblock for k in 1:Npe
         # Negative prewinder: after the 180° conjugates phase, the readout
         # samples ky = +ky_steps[k] with no Gy during ADC (clean Cartesian).
         Gy_k = -ky_steps[k] / (γ_Hz * dur_pe)
@@ -321,7 +321,7 @@ function se_2d_sequence(TE::Real, TR::Real;
     tr_d      = max(TR - shot_time, 0.0)
 
     seq = Sequence()
-    @addblocks for k in 1:Npe
+    @addblock for k in 1:Npe
         Gy_k = -ky_steps[k] / (γ_Hz * dur_pe)
 
         seq += (RF(amp_T, d_exc),)                                          # 1. excitation
@@ -410,7 +410,7 @@ function ir_tse_2d_sequence(TI::Real, esp::Real, TR::Real;
     tr_d      = max(TR - shot_time, 0.0)
 
     seq = Sequence()
-    @addblocks for s in 1:n_shots
+    @addblock for s in 1:n_shots
         seq += (RF(amp_T, d_inv),)                                          # 1. 180° inversion
         ti_d > 1e-9 && (seq += Delay(ti_d))                                 # 2. TI
         seq += (RF(amp_T, d_exc),)                                          # 3. excitation
@@ -491,7 +491,7 @@ function gre_2d_sequence(TE::Real, TR::Real;
     tr_d      = max(TR - shot_time, 0.0)
 
     seq = Sequence()
-    @addblocks for k in 1:Npe
+    @addblock for k in 1:Npe
         # Positive Gy: no 180° to conjugate, so the echo samples ky directly.
         Gy_k = ky_steps[k] / (γ_Hz * dur_pe)
 
