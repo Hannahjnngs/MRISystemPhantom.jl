@@ -1,3 +1,6 @@
 CLAUDE.md
 src/assets/report
 plans/
+.DS_Store
+docs/.DS_Store
+docs/src/.DS_Store

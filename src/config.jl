@@ -88,5 +88,5 @@ Return a `Scanner` whose `B0` matches the phantom field strength: 3.0 T for
 phantom was built with a `PhantomConfig` so that the Larmor frequency in the
 Bloch simulation is consistent with the relaxation values.
 """
-scanner_for_field(field::Symbol) = Scanner(B0 = field === :T3 ? 3.0 : 1.5)
+scanner_for_field(field::Symbol) = Scanner(limits = HardwareLimits(B0 = field === :T3 ? 3.0 : 1.5))
 scanner_for_field(cfg::PhantomConfig) = scanner_for_field(cfg.field)
