@@ -4,8 +4,8 @@ using MRISystemPhantom, Random
 using Plots
 import Statistics
 
-seq = read_seq(raw"/Users/hannah.jennings/Documents/Sequences/DWI_Summer_2026.seq");
-real_img = matread("/Users/hannah.jennings/Documents/Code/TestFolder/Slice 2 all contrasts/OneSlice_contrast6_slice2.mat")["OneSlice"]
+seq = read_seq(raw"/Users/hannah.jennings/Documents/Sequences/003.seq");
+#real_img = matread("/Users/hannah.jennings/Documents/Code/TestFolder/Slice 2 all contrasts/OneSlice_contrast6_slice2.mat")["OneSlice"]
 
 #initialisation
 # Select one contrast/slice. Contrast 1 is the three acquisitions discarded for the initial EPI correction; remaining acquisitions are ordered by slice
